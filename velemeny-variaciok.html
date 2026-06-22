@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vélemények — egy soros variációk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Bricolage+Grotesque:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--accent:#f43f5e;--accent2:#fb7185;--ink:#0b1424;--muted:rgba(15,26,46,.65)}
+body{font-family:'Inter',sans-serif;background:#f4f6fb;color:var(--ink)}
+
+.picker{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;padding:.75rem 1rem;background:rgba(15,15,22,.92);backdrop-filter:blur(14px)}
+.picker .title{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:.95rem;color:#fff;margin-right:.5rem}
+.opt{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;font-family:inherit;font-size:.8rem;font-weight:500;padding:.45rem .85rem;border-radius:999px;cursor:pointer;transition:all .2s;white-space:nowrap}
+.opt:hover{border-color:rgba(255,255,255,.5)}
+.opt.active{background:var(--accent);border-color:var(--accent);font-weight:600}
+
+.refs{padding:6.5rem clamp(1.5rem,5vw,4rem) 5rem}
+.container{max-width:1200px;margin:0 auto}
+.eyebrow{display:inline-flex;align-items:center;gap:.5rem;font-size:.78rem;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.8rem}
+.eyebrow::before{content:'';width:24px;height:1px;background:var(--accent)}
+h2{font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:800;letter-spacing:-.03em;margin-bottom:2.2rem}
+h2 .accent{color:var(--accent)}
+
+.stars{color:#f59e0b;font-size:.95rem;letter-spacing:3px}
+.q{color:rgba(15,26,46,.82);font-style:italic;line-height:1.6;text-align:justify}
+.who{display:flex;align-items:center;gap:.7rem}
+.av{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:.9rem;flex:none}
+.nm{display:flex;align-items:baseline;gap:.4rem;flex-wrap:wrap}
+.nm b{font-weight:600;font-size:.95rem;white-space:nowrap}
+.nm span{color:rgba(15,26,46,.5);font-size:.8rem;white-space:nowrap}
+
+/* mindegyik elrendezés EGY SORBAN tartja a két véleményt */
+.stage{display:none}.stage.show{display:block}
+
+/* ===== 1 — KÉT KÁRTYA EGY SORBAN ===== */
+.v1 .wrap{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;align-items:stretch}
+.v1 .t{background:#fff;border:1px solid rgba(15,26,46,.08);border-radius:16px;padding:2rem;box-shadow:0 2px 10px rgba(15,26,46,.05);display:flex;flex-direction:column;gap:1rem}
+.v1 .q{flex:1}
+
+/* ===== 2 — ELVÁLASZTÓS (kártya nélkül, közép vonal) ===== */
+.v2 .wrap{display:grid;grid-template-columns:1fr 1px 1fr;gap:2.5rem;align-items:center}
+.v2 .line{background:rgba(15,26,46,.12);align-self:stretch}
+.v2 .t{display:flex;flex-direction:column;gap:1rem}
+
+/* ===== 3 — KOMPAKT SÁV (egy kártya, két oszlop) ===== */
+.v3 .wrap{background:#fff;border:1px solid rgba(15,26,46,.08);border-radius:20px;box-shadow:0 6px 24px rgba(15,26,46,.06);display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;padding:2.25rem 2.5rem}
+.v3 .t{display:flex;flex-direction:column;gap:.9rem}
+.v3 .t:first-child{border-right:1px solid rgba(15,26,46,.08);padding-right:2.5rem}
+
+/* ===== 4 — IDÉZŐJELES ===== */
+.v4 .wrap{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.v4 .t{position:relative;background:#fff;border:1px solid rgba(15,26,46,.08);border-radius:16px;padding:2.5rem 2rem 2rem;box-shadow:0 2px 10px rgba(15,26,46,.05);display:flex;flex-direction:column;gap:1rem}
+.v4 .t::before{content:'"';position:absolute;top:-.6rem;left:1.3rem;font-family:'Bricolage Grotesque',sans-serif;font-size:4.5rem;color:var(--accent);opacity:.2;line-height:1}
+.v4 .q{flex:1}
+
+/* ===== 5 — MINIMAL (avatar fent, középre) ===== */
+.v5 .wrap{display:grid;grid-template-columns:1fr 1fr;gap:3rem;text-align:center}
+.v5 .t{display:flex;flex-direction:column;align-items:center;gap:1rem}
+.v5 .who{flex-direction:column;gap:.4rem}
+.v5 .nm{justify-content:center}
+.v5 .q{text-align:center;font-size:1.05rem}
+
+@media(max-width:760px){
+.v1 .wrap,.v4 .wrap,.v5 .wrap{grid-template-columns:1fr}
+.v2 .wrap{grid-template-columns:1fr}.v2 .line{display:none}
+.v3 .wrap{grid-template-columns:1fr;gap:1.5rem}.v3 .t:first-child{border-right:0;border-bottom:1px solid rgba(15,26,46,.08);padding-right:0;padding-bottom:1.5rem}
+}
+</style>
+</head>
+<body>
+
+<div class="picker">
+  <div class="title">Vélemények — egy sor</div>
+  <button class="opt active" data-v="1">1 · Két kártya</button>
+  <button class="opt" data-v="2">2 · Elválasztós</button>
+  <button class="opt" data-v="3">3 · Kompakt sáv</button>
+  <button class="opt" data-v="4">4 · Idézőjeles</button>
+  <button class="opt" data-v="5">5 · Minimal</button>
+</div>
+
+<section class="refs v1 stage show" id="s1"><div class="container">
+  <div class="eyebrow">Vélemények</div><h2>Amit <span class="accent">mondanak</span> rólunk.</h2>
+  <div class="wrap" data-tpl></div>
+</div></section>
+<section class="refs v2 stage" id="s2"><div class="container">
+  <div class="eyebrow">Vélemények</div><h2>Amit <span class="accent">mondanak</span> rólunk.</h2>
+  <div class="wrap"><div class="t" data-a></div><div class="line"></div><div class="t" data-b></div></div>
+</div></section>
+<section class="refs v3 stage" id="s3"><div class="container">
+  <div class="eyebrow">Vélemények</div><h2>Amit <span class="accent">mondanak</span> rólunk.</h2>
+  <div class="wrap"><div class="t" data-a></div><div class="t" data-b></div></div>
+</div></section>
+<section class="refs v4 stage" id="s4"><div class="container">
+  <div class="eyebrow">Vélemények</div><h2>Amit <span class="accent">mondanak</span> rólunk.</h2>
+  <div class="wrap" data-tpl></div>
+</div></section>
+<section class="refs v5 stage" id="s5"><div class="container">
+  <div class="eyebrow">Vélemények</div><h2>Amit <span class="accent">mondanak</span> rólunk.</h2>
+  <div class="wrap" data-tpl></div>
+</div></section>
+
+<script>
+const data=[
+ {av:'ZK',nm:'Zoltan K.',src:'Google értékelés',q:'A piacon a legjobbak — segítőkészek, korrektek, mindenkinek ajánlom. Nagyon sokszor járok oda, eddig minden rendben volt.'},
+ {av:'JS',nm:'József Sz.',src:'Google értékelés',q:'Korrekt munka, korrekt áron.'}
+];
+const card=d=>`<div class="stars">★★★★★</div><p class="q">${d.q}</p><div class="who"><div class="av">${d.av}</div><div class="nm"><b>${d.nm}</b><span>· ${d.src}</span></div></div>`;
+// data-tpl: két .t kártya egymás mellett
+document.querySelectorAll('[data-tpl]').forEach(w=>{w.innerHTML=data.map(d=>`<div class="t">${card(d)}</div>`).join('');});
+// data-a / data-b: külön töltés
+document.querySelectorAll('[data-a]').forEach(e=>e.innerHTML=card(data[0]));
+document.querySelectorAll('[data-b]').forEach(e=>e.innerHTML=card(data[1]));
+
+document.querySelectorAll('.opt').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.opt').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');
+  document.querySelectorAll('.stage').forEach(s=>s.classList.remove('show'));
+  document.getElementById('s'+b.dataset.v).classList.add('show');
+}));
+</script>
+</body>
+</html>

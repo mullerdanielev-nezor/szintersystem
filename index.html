@@ -148,23 +148,28 @@ h1 .accent{background:linear-gradient(135deg,var(--accent),var(--accent2));-webk
 .ref-marquee{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-bottom:3rem}
 .ref-logo{background:#f4f6fb;border:1px solid rgba(15,26,46,.08);border-radius:12px;padding:1.5rem;text-align:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:600;color:rgba(15,26,46,.55);font-size:1rem;letter-spacing:-.01em;transition:all .2s}
 .ref-logo:hover{border-color:color-mix(in srgb,var(--accent) 35%,#fff);color:var(--ink)}
-.work-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem;margin-bottom:3.5rem}
+.work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:3.5rem}
 .work-tile{position:relative;overflow:hidden;border-radius:16px;aspect-ratio:4/3;background:#222}
-.work-tile img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
-.work-tile:hover img{transform:scale(1.07)}
+.work-tile img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s,filter .4s}
+.work-tile:hover img{transform:scale(1.05);filter:brightness(.5)}
+@media(max-width:820px){.work-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.work-grid{grid-template-columns:1fr}}
 .work-tile .meta{position:absolute;left:0;right:0;bottom:0;padding:1.1rem 1.2rem;color:#fff;background:linear-gradient(180deg,transparent,rgba(11,20,36,.82));transform:translateY(100%);transition:transform .4s}
 .work-tile:hover .meta{transform:translateY(0)}
 .work-tile .meta .t{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1.05rem}
 .work-tile .meta .c{font-size:.8rem;opacity:.85;margin-top:.15rem}
-@media(max-width:820px){.work-grid{grid-template-columns:1fr 1fr}}
-.testimonials{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem}
-.testi{background:#f4f6fb;border:1px solid rgba(15,26,46,.08);border-radius:16px;padding:2rem;position:relative}
+.testimonials{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;align-items:stretch}
+@media(max-width:760px){.testimonials{grid-template-columns:1fr}}
+.testi{background:#f4f6fb;border:1px solid rgba(15,26,46,.08);border-radius:16px;padding:2.5rem 2rem 2rem;position:relative;display:flex;flex-direction:column}
 .testi::before{content:'"';position:absolute;top:-.5rem;left:1.5rem;font-family:'Bricolage Grotesque',sans-serif;font-size:5rem;color:var(--accent);opacity:.2;line-height:1}
-.testi p{color:rgba(15,26,46,.8);font-size:1rem;line-height:1.6;margin-bottom:1.25rem;font-style:italic}
+.testi .stars{color:#f59e0b;font-size:1rem;letter-spacing:3px;margin-bottom:.9rem}
+.testi p{color:rgba(15,26,46,.8);font-size:1rem;line-height:1.6;margin-bottom:1.25rem;font-style:italic;text-align:justify;text-justify:inter-word;flex:1}
 .testi-author{display:flex;align-items:center;gap:.75rem;border-top:1px solid rgba(15,26,46,.08);padding-top:1rem}
 .testi-avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:.95rem}
-.testi-info .ta-name{font-weight:600;font-size:.95rem}
-.testi-info .ta-role{color:rgba(15,26,46,.5);font-size:.8rem}
+.testi-info{display:flex;align-items:baseline;flex-wrap:wrap;gap:.45rem}
+.testi-info .ta-name{font-weight:600;font-size:.95rem;white-space:nowrap}
+.testi-info .ta-role{color:rgba(15,26,46,.5);font-size:.8rem;white-space:nowrap}
+.testi-info .ta-role::before{content:'· '}
 
 /* ===== CONTACT ===== */
 .contact{background:#f4f6fb;position:relative}
@@ -212,8 +217,35 @@ h1 .accent{background:linear-gradient(135deg,var(--accent),var(--accent2));-webk
 .services::after,.refs::after,.area::after{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(color-mix(in srgb,var(--accent) 8%,transparent) 1px,transparent 1px),linear-gradient(90deg,color-mix(in srgb,var(--accent) 8%,transparent) 1px,transparent 1px);background-size:48px 48px;mask-image:radial-gradient(ellipse 92% 82% at 50% 50%,#000,transparent 92%);-webkit-mask-image:radial-gradient(ellipse 92% 82% at 50% 50%,#000,transparent 92%)}
 
 /* ===== KORALL ELVÁLASZTÓ VONAL a szekciók között ===== */
-.about,.services,.refs,.area,.faq,.contact{position:relative}
-.about::before,.services::before,.refs::before,.area::before,.faq::before,.contact::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:min(1100px,88%);height:2px;background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--accent) 70%,transparent),transparent);pointer-events:none;z-index:3}
+.about,.services,.process,.refs,.area,.faq,.contact{position:relative}
+.about::before,.services::before,.process::before,.refs::before,.area::before,.faq::before,.contact::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:min(1100px,88%);height:2px;background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--accent) 70%,transparent),transparent);pointer-events:none;z-index:3}
+
+/* ===== HOGYAN DOLGOZUNK ===== */
+.process{background:#f4f6fb}
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:1.25rem;counter-reset:st;position:relative;margin-top:1rem}
+.steps::before{content:'';position:absolute;top:32px;left:10%;right:10%;height:2px;background:repeating-linear-gradient(90deg,color-mix(in srgb,var(--accent) 45%,transparent) 0 8px,transparent 8px 16px);z-index:1}
+.step{position:relative;text-align:center;padding:0 .4rem;z-index:2}
+.step .ic{width:64px;height:64px;margin:0 auto 1.1rem;border-radius:50%;background:#fff;border:2px solid color-mix(in srgb,var(--accent) 30%,#fff);display:flex;align-items:center;justify-content:center;color:var(--accent);position:relative}
+.step .ic svg{width:28px;height:28px}
+.step .ic::after{counter-increment:st;content:counter(st,decimal-leading-zero);position:absolute;bottom:-6px;right:-6px;width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;font-family:'Space Mono',monospace;font-size:.7rem;font-weight:700;display:flex;align-items:center;justify-content:center}
+.step h4{font-family:'Bricolage Grotesque',sans-serif;font-size:1.05rem;font-weight:700;margin-bottom:.4rem;color:var(--ink)}
+.step p{color:var(--muted);font-size:.88rem;line-height:1.5}
+@media(max-width:820px){.steps{grid-template-columns:1fr;gap:2rem}.steps::before{display:none}}
+
+/* ===== LEBEGŐ HÍVÁS GOMB ===== */
+.callbtn{position:fixed;right:1.1rem;bottom:1.1rem;z-index:850;display:inline-flex;align-items:center;gap:.55rem;background:var(--accent);color:#fff;padding:.9rem 1.2rem;border-radius:999px;font-weight:600;font-size:.95rem;text-decoration:none;box-shadow:0 12px 30px color-mix(in srgb,var(--accent) 50%,transparent);transition:transform .2s,box-shadow .2s}
+.callbtn:hover{transform:translateY(-2px);box-shadow:0 16px 38px color-mix(in srgb,var(--accent) 60%,transparent)}
+.callbtn svg{width:20px;height:20px}
+.callbtn::after{content:'';position:absolute;inset:0;border-radius:999px;border:2px solid var(--accent);animation:ring 2.2s ease-out infinite;pointer-events:none}
+@keyframes ring{0%{transform:scale(1);opacity:.6}100%{transform:scale(1.5);opacity:0}}
+@media(max-width:520px){.callbtn .lbl{display:none}.callbtn{padding:1rem}}
+
+/* ===== LIGHTBOX ===== */
+.work-tile{cursor:zoom-in}
+.lb{position:fixed;inset:0;z-index:1100;background:rgba(8,12,20,.92);display:none;align-items:center;justify-content:center;padding:2rem}
+.lb.open{display:flex}
+.lb img{max-width:92vw;max-height:90vh;border-radius:10px;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.lb .x{position:absolute;top:1rem;right:1.25rem;width:46px;height:46px;border-radius:12px;background:rgba(255,255,255,.15);color:#fff;border:0;font-size:1.9rem;line-height:1;cursor:pointer}
 
 /* ===== FOOTER ===== */
 footer{padding:3rem clamp(1.5rem,5vw,4rem) 2rem;background:#fff;border-top:1px solid rgba(15,26,46,.08)}
@@ -256,6 +288,7 @@ section{padding:4rem clamp(1.5rem,5vw,2rem)}
 <nav class="menu">
 <a href="#rolunk">Rólunk</a>
 <a href="#szolgaltatasok">Szolgáltatások</a>
+<a href="#folyamat">Folyamat</a>
 <a href="#referenciak">Referenciák</a>
 <a href="#terulet">Hol vagyunk</a>
 <a href="#gyik">GYIK</a>
@@ -275,6 +308,7 @@ section{padding:4rem clamp(1.5rem,5vw,2rem)}
 <img class="mm-logo" src="images.html/logo-trans.png" alt="Szinter System Bt.">
 <a href="#rolunk">Rólunk</a>
 <a href="#szolgaltatasok">Szolgáltatások</a>
+<a href="#folyamat">Folyamat</a>
 <a href="#referenciak">Referenciák</a>
 <a href="#terulet">Hol vagyunk</a>
 <a href="#gyik">GYIK</a>
@@ -286,17 +320,16 @@ section{padding:4rem clamp(1.5rem,5vw,2rem)}
 <section class="hero" id="top">
 <div class="hero-content">
 <div>
-<div class="badge"><span class="dot"></span>ISO 9001 minősített üzem · Gyömrő</div>
 <h1>Professzionális porfestés,<br><span class="accent">tartós védelem.</span></h1>
 <p class="lead">Fémfelületek porfestése és felületkezelése 1995 óta — precíz előkészítéssel és megbízható átfutással, a kisszériától az ipari mennyiségig.</p>
 <div class="cta-group">
 <a href="#kapcsolat" class="btn btn-primary">Kérek árajánlatot →</a>
-<a href="tel:+3629330241" class="btn btn-secondary">📞 29/330-241</a>
+<a href="tel:+36309613958" class="btn btn-secondary">📞 06-30-9-613-958</a>
 </div>
 <div class="stats">
 <div class="stat"><div class="num">30+</div><div class="label">Év tapasztalat</div></div>
-<div class="stat"><div class="num">ISO</div><div class="label">9001 minősítés</div></div>
-<div class="stat"><div class="num">1995</div><div class="label">Alapítás óta</div></div>
+<div class="stat"><div class="num">4 m</div><div class="label">Kemencehossz</div></div>
+<div class="stat"><div class="num">RAL+</div><div class="label">Egyedi katalógus</div></div>
 </div>
 </div>
 </div>
@@ -316,7 +349,7 @@ section{padding:4rem clamp(1.5rem,5vw,2rem)}
 <div class="eyebrow">Rólunk</div>
 <h2>Három évtized<br>a <span class="accent">felületek</span> mögött.</h2>
 <p>A <strong>Szinter System Bt.</strong> 1995 óta dolgozik fémfelületek professzionális porfestésén és felületkezelésén. Gyömrői üzemünkben kis sorozatoktól az ipari mennyiségig minden megrendelést egyformán pontosan teljesítünk.</p>
-<p>Hiszünk abban, hogy egy tartós bevonat nem csak a festéken múlik — a <strong>precíz előkészítés</strong>, a megfelelő technológia és a következetes minőségellenőrzés legalább annyira fontos. Ezért dolgozunk <strong>ISO 9001 minősített</strong> rendszer szerint.</p>
+<p>Hiszünk abban, hogy egy tartós bevonat nem csak a festéken múlik — a <strong>precíz előkészítés</strong>, a megfelelő technológia és a következetes minőségellenőrzés legalább annyira fontos. Ezért minden darabnál ügyelünk a gondos előkészítésre és a pontos kivitelezésre.</p>
 <p>Partnereink között megtalálhatók kisebb fémmegmunkáló műhelyek és nagy ipari gyártók egyaránt. Az alapanyag-választástól a kiszállításig egy csapatban gondolkozunk velük.</p>
 </div>
 </div>
@@ -333,8 +366,8 @@ section{padding:4rem clamp(1.5rem,5vw,2rem)}
 
 <article class="svc">
 <div class="imgwrap">
-<img src="images.html/porfest%C3%A9s.png" alt="Porfestés a szórókamrában">
-<span class="tag">RAL színskála</span>
+<img src="images.html/szinter%20system%20k%C3%A9pek/web/IMG_1309.jpeg" alt="Porfestett quad váz" loading="lazy">
+<span class="tag">RAL + egyedi katalógus</span>
 </div>
 <div class="body">
 <div class="kicker">Bevonat</div>
@@ -345,7 +378,7 @@ section{padding:4rem clamp(1.5rem,5vw,2rem)}
 
 <article class="svc">
 <div class="imgwrap">
-<img src="images.html/homoksz%C3%B3r%C3%A1s.jpg" alt="Homokszórás — előtte és utána">
+<img src="images.html/szinter%20system%20k%C3%A9pek/web/IMG_7712_crop.jpeg" alt="Felni homokszórás — előtte és utána" loading="lazy">
 <span class="tag">Előtte / utána</span>
 </div>
 <div class="body">
@@ -359,6 +392,42 @@ section{padding:4rem clamp(1.5rem,5vw,2rem)}
 </div>
 </section>
 
+<!-- HOGYAN DOLGOZUNK -->
+<section class="process" id="folyamat">
+<div class="container">
+<div class="eyebrow">Hogyan dolgozunk</div>
+<h2>Az úttól a <span class="accent">kész darabig</span>.</h2>
+<p class="section-lead">Egyszerű, átlátható folyamat — az ajánlatkéréstől a kész, bevont alkatrész átvételéig.</p>
+<div class="steps">
+<div class="step">
+<div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+<h4>Ajánlatkérés</h4>
+<p>Küldd el a darab adatait, mi árajánlatot adunk, majd leadod nálunk.</p>
+</div>
+<div class="step">
+<div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></div>
+<h4>Homokszórás</h4>
+<p>Régi festék, rozsda és szennyeződés eltávolítása — tiszta, érdesített felület.</p>
+</div>
+<div class="step">
+<div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+<h4>Porfestés</h4>
+<p>RAL vagy egyedi katalógusszín felvitele ellenőrzött körülmények között.</p>
+</div>
+<div class="step">
+<div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v6M5 8l2 2M19 8l-2 2M4 14a8 8 0 0 0 16 0z"/></svg></div>
+<h4>Kiégetés</h4>
+<p>180–200 °C-on kemencében — tartós, ellenálló, esztétikus bevonat.</p>
+</div>
+<div class="step">
+<div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div>
+<h4>Átvétel</h4>
+<p>Értesítünk, ha kész — az alkatrészt az üzemünkben veheted át.</p>
+</div>
+</div>
+</div>
+</section>
+
 <!-- REFERENCES -->
 <section class="refs" id="referenciak">
 <div class="container">
@@ -366,23 +435,29 @@ section{padding:4rem clamp(1.5rem,5vw,2rem)}
 <h2>Munkáink <span class="accent">képeken</span>.</h2>
 <p class="section-lead">Referenciaképek a nálunk készült porfestésekről és felületkezelésekről — valódi darabok, valódi eredmények.</p>
 <div class="work-grid">
-<div class="work-tile"><img src="images.html/2026.%20j%C3%BAn.%2018.%2011_50_59.png" alt="Alufelni fényes fekete porfestés — előtte/utána" loading="lazy"><div class="meta"><div class="t">Alufelni — fényes fekete</div><div class="c">Porfestés · előtte / utána</div></div></div>
-<div class="work-tile"><img src="images.html/ChatGPT%20Image%202026.%20j%C3%BAn.%2018.%2011_51_56.png" alt="Lengőkar narancs porfestés a kamrában" loading="lazy"><div class="meta"><div class="t">Lengőkar — narancs</div><div class="c">RAL 2004 · nyers → bevont</div></div></div>
-<div class="work-tile"><img src="images.html/ChatGPT%20Image%202026.%20j%C3%BAn.%2018.%2011_53_52.png" alt="Versenyfelni bronz metál porfestés" loading="lazy"><div class="meta"><div class="t">Versenyfelni — bronz metál</div><div class="c">Egyedi színkeverés</div></div></div>
-<div class="work-tile"><img src="images.html/ChatGPT%20Image%202026.%20j%C3%BAn.%2018.%2011_58_02.png" alt="Alufelni ezüst porfestés, kész darab" loading="lazy"><div class="meta"><div class="t">Alufelni — ezüst</div><div class="c">Felújítás + porfestés</div></div></div>
+<div class="work-tile"><img src="images.html/szinter%20system%20k%C3%A9pek/web/IMG_7711.jpeg" alt="Felni a teljes felületkezelési folyamatban"><div class="meta"><div class="t">Felni — a teljes folyamat</div><div class="c">Nyers → homokszórt → fekete metál</div></div></div>
+<div class="work-tile"><img src="images.html/szinter%20system%20k%C3%A9pek/web/IMG_6164.jpeg" alt="Versenyfelni arany metál porfestés"><div class="meta"><div class="t">Versenyfelni — arany metál</div><div class="c">Egyedi katalógusszín</div></div></div>
+<div class="work-tile"><img src="images.html/szinter%20system%20k%C3%A9pek/web/IMG_7710.jpeg" alt="Felni fekete metál porfestés"><div class="meta"><div class="t">Felni — fekete metál</div><div class="c">Strukturált bevonat</div></div></div>
+<div class="work-tile"><img src="images.html/szinter%20system%20k%C3%A9pek/web/IMG_0407.jpeg" alt="Ipari tartályok felületkezelése"><div class="meta"><div class="t">Ipari tartályok</div><div class="c">Nagydarabos munka</div></div></div>
+<div class="work-tile"><img src="images.html/szinter%20system%20k%C3%A9pek/web/IMG_1284.jpeg" alt="Nagy kék keret porfestés"><div class="meta"><div class="t">Nagy keret — kék</div><div class="c">Porfestés</div></div></div>
+<div class="work-tile"><img src="images.html/szinter%20system%20k%C3%A9pek/web/IMG_1290.jpeg" alt="Quad váz homokszórás után"><div class="meta"><div class="t">Quad váz — homokszórás után</div><div class="c">Festésre előkészítve</div></div></div>
+<div class="work-tile"><img src="images.html/szinter%20system%20k%C3%A9pek/web/IMG_0374.jpeg" alt="Fekete fényes elemek porfestés után"><div class="meta"><div class="t">Fekete fényes elemek</div><div class="c">Sorozatmunka</div></div></div>
+<div class="work-tile"><img src="images.html/szinter%20system%20k%C3%A9pek/web/IMG_0377.jpeg" alt="Perforált tartály antracit porfestés"><div class="meta"><div class="t">Perforált tartály — antracit</div><div class="c">Porfestés</div></div></div>
+<div class="work-tile"><img src="images.html/szinter%20system%20k%C3%A9pek/web/IMG_6347.jpeg" alt="Alufelni homokszórás után"><div class="meta"><div class="t">Alufelni — homokszórás után</div><div class="c">Festésre előkészítve</div></div></div>
+<div class="work-tile"><img src="images.html/szinter%20system%20k%C3%A9pek/web/IMG_7636.jpeg" alt="Alufelni ezüst, felújítás"><div class="meta"><div class="t">Alufelni — ezüst</div><div class="c">Felújítás</div></div></div>
+<div class="work-tile"><img src="images.html/szinter%20system%20k%C3%A9pek/web/IMG_7154.jpeg" alt="Porfestő sor az üzemben"><div class="meta"><div class="t">Üzemünk belül</div><div class="c">Porfestő sor</div></div></div>
+<div class="work-tile"><img src="images.html/szinter%20system%20k%C3%A9pek/web/IMG_6963.jpeg" alt="Kapu porfestés előtte és utána"><div class="meta"><div class="t">Kapu — előtte / utána</div><div class="c">Kerítéselem</div></div></div>
 </div>
 <div class="testimonials">
 <div class="testi">
-<p>Évek óta velük dolgozunk. Mindig pontosak, a minőség kiváló, és ami a legfontosabb: ha gond van, telefonon elintézzük — nem hetekig várok visszajelzésre.</p>
-<div class="testi-author"><div class="testi-avatar">KZ</div><div class="testi-info"><div class="ta-name">Kovács Zoltán</div><div class="ta-role">Ügyvezető · Ipari Partner Kft.</div></div></div>
+<div class="stars">★★★★★</div>
+<p>A piacon a legjobbak — segítőkészek, korrektek, mindenkinek ajánlom. Nagyon sokszor járok oda, eddig minden rendben volt.</p>
+<div class="testi-author"><div class="testi-avatar">ZK</div><div class="testi-info"><div class="ta-name">Zoltan K.</div><div class="ta-role">Google értékelés</div></div></div>
 </div>
 <div class="testi">
-<p>Speciális RAL színt kértünk kis tételben, mások meg sem akarták csinálni. A Szinter System megoldotta — a határidőt is tartották.</p>
-<div class="testi-author"><div class="testi-avatar">NA</div><div class="testi-info"><div class="ta-name">Nagy András</div><div class="ta-role">Termelésvezető · Fémszerkezet Zrt.</div></div></div>
-</div>
-<div class="testi">
-<p>Nagydarabos szerkezeteket szinterezünk velük rendszeresen. Stabil minőség, megbízható kommunikáció, korrekt árak.</p>
-<div class="testi-author"><div class="testi-avatar">SP</div><div class="testi-info"><div class="ta-name">Szabó Péter</div><div class="ta-role">Tulajdonos · Acélmunka Kft.</div></div></div>
+<div class="stars">★★★★★</div>
+<p>Korrekt munka, korrekt áron.</p>
+<div class="testi-author"><div class="testi-avatar">JS</div><div class="testi-info"><div class="ta-name">József Sz.</div><div class="ta-role">Google értékelés</div></div></div>
 </div>
 </div>
 </div>
@@ -396,7 +471,7 @@ section{padding:4rem clamp(1.5rem,5vw,2rem)}
 <div class="eyebrow">Hol vagyunk</div>
 <h2>Gyömrőről<br>az egész <span class="accent">régiónak</span>.</h2>
 <p>Üzemünk <strong>Gyömrőn (2230)</strong> működik, Budapesttől délkeletre. Innen szolgáljuk ki a fővárost és Pest megye nagy részét — kis sorozattól az ipari mennyiségig.</p>
-<p>Az alkatrészeket <strong>üzemünkben átveheted és leadhatod</strong>; nagyobb tételeknél a logisztikában is segítünk. Egyeztess velünk a részletekről.</p>
+<p>Az alkatrészeket <strong>üzemünkben tudod leadni és átvenni</strong> — szállítást és logisztikát nem vállalunk. Egyeztess velünk az időpontról és a részletekről.</p>
 <div class="region-list">
 <span class="region">Gyömrő</span>
 <span class="region">Budapest</span>
@@ -423,7 +498,7 @@ section{padding:4rem clamp(1.5rem,5vw,2rem)}
 <div class="faq-list">
 <details open>
 <summary>Milyen méretű alkatrészeket vállaltok?</summary>
-<div class="a">Kis daraboktól a nagydarabos ipari szerkezetekig sok mindent szinterezünk. A pontos méretkorlátról a kamráink befogadóképessége alapján adunk tájékoztatást — küldd el a darab méreteit, és visszajelzünk.</div>
+<div class="a">Kis daraboktól a nagyobb ipari szerkezetekig sok mindent vállalunk. A kemencénk hasznos belső mérete <strong>4 m hosszú, 1,2 m széles és 1,9 m magas</strong> — ami ebbe befér, azt porfestjük. Ha bizonytalan vagy, küldd el a darab méreteit, és visszajelzünk.</div>
 </details>
 <details>
 <summary>Mennyi a szokásos átfutási idő?</summary>
@@ -431,7 +506,7 @@ section{padding:4rem clamp(1.5rem,5vw,2rem)}
 </details>
 <details>
 <summary>Milyen színek közül választhatok?</summary>
-<div class="a">A teljes <strong>RAL színskála</strong> elérhető, fényes, matt és strukturált felülettel. Egyedi RAL-, NCS- vagy minta utáni színkeverést is vállalunk, akár kis tételben.</div>
+<div class="a">A teljes <strong>RAL színskála</strong> elérhető, fényes, matt és strukturált felülettel. Színt nem keverünk, viszont a RAL-skálán túl egy <strong>egyedi festékkatalógusból</strong> is választhatsz, ahol rengeteg különleges porfesték elérhető.</div>
 </details>
 <details>
 <summary>Szükséges-e homokszórás a porfestés előtt?</summary>
@@ -443,7 +518,7 @@ section{padding:4rem clamp(1.5rem,5vw,2rem)}
 </details>
 <details>
 <summary>Hogyan kérhetek árajánlatot?</summary>
-<div class="a">Töltsd ki a lenti űrlapot a darab adataival (méret, mennyiség, RAL szín, határidő), vagy hívj minket a <a href="tel:+3629330241" style="color:var(--accent);font-weight:600">29/330-241</a> számon — telefonon gyakran gyorsabb.</div>
+<div class="a">Töltsd ki a lenti űrlapot a darab adataival (méret, mennyiség, RAL/katalógus szín, határidő), vagy hívj minket a <a href="tel:+36309613958" style="color:var(--accent);font-weight:600">06-30-9-613-958</a> számon — telefonon gyakran gyorsabb.</div>
 </details>
 </div>
 </div>
@@ -459,11 +534,11 @@ section{padding:4rem clamp(1.5rem,5vw,2rem)}
 <div class="contact-info">
 <div class="contact-item">
 <div class="ci-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
-<div><div class="ci-label">Telefon</div><div class="ci-value"><a href="tel:+3629330241">29/330-241</a></div></div>
+<div><div class="ci-label">Telefon</div><div class="ci-value"><a href="tel:+36309613958">06-30-9-613-958</a></div></div>
 </div>
 <div class="contact-item">
 <div class="ci-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-<div><div class="ci-label">E-mail</div><div class="ci-value"><a href="mailto:info@szintersystem.hu">info@szintersystem.hu</a></div></div>
+<div><div class="ci-label">E-mail</div><div class="ci-value"><a href="mailto:szintersys@gmail.com">szintersys@gmail.com</a></div></div>
 </div>
 <div class="contact-item">
 <div class="ci-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
@@ -471,7 +546,7 @@ section{padding:4rem clamp(1.5rem,5vw,2rem)}
 </div>
 <div class="contact-item">
 <div class="ci-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-<div><div class="ci-label">Nyitvatartás</div><div class="ci-value">H–P: 07:00 – 16:00<br>Szo–V: zárva</div></div>
+<div><div class="ci-label">Nyitvatartás</div><div class="ci-value">H–P: 08:00 – 16:00<br>Szo–V: zárva</div></div>
 </div>
 </div>
 <form class="contact-form" onsubmit="event.preventDefault();alert('Köszönjük! Hamarosan válaszolunk.')">
@@ -486,7 +561,7 @@ section{padding:4rem clamp(1.5rem,5vw,2rem)}
 <div class="form-group"><label>Szolgáltatás</label>
 <select><option>Porfestés</option><option>Homokszórás</option><option>Egyéb / nem tudom</option></select>
 </div>
-<div class="form-group"><label>Üzenet / részletek *</label><textarea required placeholder="Pl. alkatrész mérete, mennyiség, RAL szín, határidő..."></textarea></div>
+<div class="form-group"><label>Üzenet / részletek *</label><textarea required placeholder="Pl. alkatrész mérete, mennyiség, RAL/katalógus szín, határidő..."></textarea></div>
 <button type="submit" class="btn btn-primary form-submit">Árajánlat kérése →</button>
 </form>
 </div>
@@ -504,6 +579,12 @@ section{padding:4rem clamp(1.5rem,5vw,2rem)}
 </div>
 </div>
 </footer>
+
+<!-- lebegő hívás gomb -->
+<a class="callbtn" href="tel:+36309613958" aria-label="Hívás"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span class="lbl">Hívás</span></a>
+
+<!-- lightbox -->
+<div class="lb" id="lb"><button class="x" id="lbX" aria-label="Bezárás">&times;</button><img id="lbImg" src="" alt=""></div>
 
 <script>
 /* preloader: tűnjön el a betöltés után (max. fallback 2.5s) */
@@ -531,6 +612,19 @@ section{padding:4rem clamp(1.5rem,5vw,2rem)}
   const h=document.getElementById('site-header');
   const onScroll=()=>h.classList.toggle('scrolled',window.scrollY>24);
   onScroll();window.addEventListener('scroll',onScroll,{passive:true});
+})();
+
+/* lightbox — referencia képek nagyítása */
+(function(){
+  const lb=document.getElementById('lb'),lbImg=document.getElementById('lbImg');
+  if(!lb)return;
+  document.querySelectorAll('.work-grid .work-tile img').forEach(img=>{
+    img.addEventListener('click',()=>{lbImg.src=img.src;lb.classList.add('open');document.body.classList.add('no-scroll');});
+  });
+  const close=()=>{lb.classList.remove('open');document.body.classList.remove('no-scroll');};
+  lb.addEventListener('click',close);
+  document.getElementById('lbX').addEventListener('click',close);
+  addEventListener('keydown',e=>{if(e.key==='Escape')close();});
 })();
 
 /* mobil menü */
