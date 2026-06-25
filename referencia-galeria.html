@@ -143,7 +143,7 @@ const items=[
  ["IMG_6963","Kapu — előtte / utána","Kerítéselem"]
 ];
 const grid=document.getElementById('grid');
-grid.innerHTML=items.map(([f,t,c])=>`<div class="tile"><img src="${E}${f}.jpeg" alt="${t}" loading="lazy"><div class="meta"><div class="t">${t}</div><div class="c">${c}</div></div></div>`).join('');
+grid.innerHTML=items.map(([f,t,c])=>`<div class="tile"><img src="${E}${f}.webp" alt="${t}" loading="lazy"><div class="meta"><div class="t">${t}</div><div class="c">${c}</div></div></div>`).join('');
 const refs=document.getElementById('refs');
 document.querySelectorAll('.opt').forEach(b=>b.addEventListener('click',()=>{
   document.querySelectorAll('.opt').forEach(x=>x.classList.remove('active'));
