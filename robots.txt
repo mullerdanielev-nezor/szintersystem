@@ -1,0 +1,42 @@
+User-agent: *
+Allow: /index.html
+Allow: /images.html/
+Disallow: /fejlec-otletek.html
+Disallow: /referencia-galeria.html
+Disallow: /velemeny-variaciok.html
+
+# AI asszisztensek és válaszmotorok — engedélyezve, hogy idézhessék az oldalt
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+Sitemap: https://szintersystem.hu/sitemap.xml
