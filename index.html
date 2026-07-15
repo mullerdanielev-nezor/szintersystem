@@ -827,9 +827,9 @@ section{padding:4rem clamp(1.5rem,5vw,2rem)}
 /* scroll reveal: elemek beúsznak, csoportonként lépcsőzve */
 (function(){
   if(!('IntersectionObserver'in window))return;
-  const sel='.eyebrow,section h2,.section-lead,.about-imgwrap,.about-text,.svc,.work-tile,.testi,.area-text,.map,.faq details,.contact-item,.contact-form';
+  const sel='.eyebrow,section h2,.section-lead,.about-imgwrap,.about-text,.svc,.testi,.area-text,.map,.faq details,.contact-item,.contact-form';
   document.querySelectorAll(sel).forEach(el=>el.classList.add('reveal'));
-  ['.svc-grid','.work-grid','.testimonials','.contact-info','.faq-list'].forEach(g=>{
+  ['.svc-grid','.testimonials','.contact-info','.faq-list'].forEach(g=>{
     document.querySelectorAll(g).forEach(grid=>{
       Array.from(grid.children).forEach((el,i)=>{if(el.classList.contains('reveal'))el.style.transitionDelay=(Math.min(i,6)*0.05)+'s';});
     });
